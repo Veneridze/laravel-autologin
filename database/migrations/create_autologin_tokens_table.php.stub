@@ -19,7 +19,7 @@ class CreateAutologinTokensTable extends Migration
             $table->string('token')->unique();
             $table->string('path')->nullable();
 
-            $table->integer('count')->default(0)->nullable()->after('path');
+            $table->integer('count')->default(0)->nullable();
 
             $table->timestamps();
         });
