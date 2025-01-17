@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace Watson\Autologin\Interfaces;
+namespace Veneridze\Autologin\Interfaces;
 
 interface AuthenticationInterface
 {

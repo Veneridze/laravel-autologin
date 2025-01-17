@@ -1,13 +1,13 @@
 <?php
 
-namespace Watson\Autologin;
+namespace Veneridze\Autologin;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Config\Repository;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Watson\Autologin\Interfaces\AutologinInterface;
+use Veneridze\Autologin\Interfaces\AutologinInterface;
 
 class Autologin
 {
@@ -21,7 +21,7 @@ class Autologin
     /**
      * AutologinInterface provider instance.
      *
-     * @var \Watson\Autologin\AutologinInterface
+     * @var \Veneridze\Autologin\Interfaces\AutologinInterface
      */
     protected $provider;
 
@@ -29,7 +29,7 @@ class Autologin
      * Create a new Autologin instance.
      *
      * @param  \Illuminate\Routing\UrlGenerator                 $generator
-     * @param  \Watson\Autologin\Interfaces\AutologinInterface  $provider
+     * @param  \Veneridze\Autologin\Interfaces\AutologinInterface  $provider
      * @return void
      */
     public function __construct(UrlGenerator $generator, AutologinInterface $provider)
@@ -144,9 +144,9 @@ class Autologin
 
         // Save the token to storage.
         $this->provider->create([
-            'user_id'    => $userId,
-            'token'      => $token,
-            'path'       => $path
+            'user_id' => $userId,
+            'token' => $token,
+            'path' => $path
         ]);
 
         // Return a link using the route from the configuration file and
@@ -189,10 +189,11 @@ class Autologin
      * Determine whether the autologin token provided is valid and remove it
      * if not.
      *
-     * @param  \Watson\Autologin\Interfaces\AutologinInterface  $autologin
+     * @param  \Veneridze\Autologin\Interfaces\AutologinInterface  $autologin
      * @return bool
      */
-    protected function autologinValid(AutologinInterface $autologin) {
+    protected function autologinValid(AutologinInterface $autologin)
+    {
         if (config('autologin.remove_expired')) {
             $lifetime = config('autologin.lifetime');
 

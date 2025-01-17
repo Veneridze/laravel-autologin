@@ -1,13 +1,13 @@
 <?php
+namespace Veneridze\Autologin;
 
-namespace Watson\Autologin;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Veneridze\Autologin\Interfaces\AuthenticationInterface;
+use Veneridze\Autologin\Interfaces\AutologinInterface;
 
-use Illuminate\Support\ServiceProvider;
-use Watson\Autologin\Autologin;
-use Watson\Autologin\Interfaces\AutologinInterface;
-use Watson\Autologin\Interfaces\AuthenticationInterface;
-
-class AutologinServiceProvider extends ServiceProvider
+class AutologinProvider extends PackageServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -16,21 +16,35 @@ class AutologinServiceProvider extends ServiceProvider
      */
     protected $defer = false;
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
+    public function configurePackage(Package $package): void
     {
-        $this->mergeConfigFrom(__DIR__.'/config/config.php', 'autologin');
+        $package
+            ->name('laravel-autologin')
+            ->hasConfigFile('autologin')
+            ->hasRoute('autologin')
+            ->publishesServiceProvider('AutologinProvider')
+            ->hasInstallCommand(function (InstallCommand $command) {
+                $command
+                    ->publishConfigFile()
+                    ->publishMigrations()
+                    ->copyAndRegisterServiceProviderInApp();
+            });
+    }
 
+    public function packageBooted(): void
+    {
+
+    }
+
+    public function packageRegistered(): void
+    {
         $this->bindAutologinInterface();
         $this->bindAuthenticationInterface();
 
         $this->registerAutologinProvider();
         $this->registerAutologin();
     }
+
 
     /**
      * Bind the autologin provider to the interface.
@@ -85,27 +99,11 @@ class AutologinServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the service provider.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->publishes([
-            __DIR__.'/config/config.php' => config_path('autologin.php')
-        ], 'config');
-
-        $this->publishes([
-            __DIR__.'/migrations/' => base_path('/database/migrations')
-        ], 'migrations');
-    }
-
-    /**
      * Get the services provided by the provider.
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return [
             'autologin',

@@ -1,10 +1,10 @@
-<?php 
+<?php
 
-namespace Watson\Autologin\Providers;
+namespace Veneridze\Autologin\Providers;
 
 use Sentry;
 use Cartalyst\Sentry\Users\UserNotFoundException;
-use Watson\Autologin\Interfaces\AuthenticationInterface;
+use Veneridze\Autologin\Interfaces\AuthenticationInterface;
 
 class SentryAuthenticationProvider implements AuthenticationInterface
 {

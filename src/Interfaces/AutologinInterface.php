@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace Watson\Autologin\Interfaces;
+namespace Veneridze\Autologin\Interfaces;
 
 interface AutologinInterface
 {
@@ -8,7 +8,7 @@ interface AutologinInterface
      * Creates a autologin token.
      *
      * @param  array  $attributes
-     * @return \Watson\Autologin\Interfaces\AutologinInterface
+     * @return \Veneridze\Autologin\Interfaces\AutologinInterface
      */
     public static function create(array $params);
 
@@ -16,7 +16,7 @@ interface AutologinInterface
      * Find a user by the given token.
      *
      * @param  string  $token
-     * @return \Watson\Autologin\Interfaces\AutologinInterface
+     * @return \Veneridze\Autologin\Interfaces\AutologinInterface
      */
     public static function findByToken($token);
 

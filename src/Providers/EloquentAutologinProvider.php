@@ -1,9 +1,9 @@
 <?php
 
-namespace Watson\Autologin\Providers;
+namespace Veneridze\Autologin\Providers;
 
 use Illuminate\Database\Eloquent\Model;
-use Watson\Autologin\Interfaces\AutologinInterface;
+use Veneridze\Autologin\Interfaces\AutologinInterface;
 
 class EloquentAutologinProvider extends Model implements AutologinInterface
 {
@@ -25,7 +25,7 @@ class EloquentAutologinProvider extends Model implements AutologinInterface
      * Creates a autologin token.
      *
      * @param  array  $attributes
-     * @return \Watson\Autologin\Interfaces\AutologinInterface
+     * @return \Veneridze\Autologin\Interfaces\AutologinInterface
      */
     public static function create(array $attributes = [])
     {
@@ -40,7 +40,7 @@ class EloquentAutologinProvider extends Model implements AutologinInterface
      * Find a user by the given token.
      *
      * @param  string  $token
-     * @return \Watson\Autologin\Interfaces\AutologinInterface
+     * @return \Veneridze\Autologin\Interfaces\AutologinInterface
      */
     public static function findByToken($token)
     {

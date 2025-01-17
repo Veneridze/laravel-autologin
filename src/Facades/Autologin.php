@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace Watson\Autologin\Facades;
+namespace Veneridze\Autologin\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Watson\Autologin\Providers;
+namespace Veneridze\Autologin\Providers;
 
 use Auth;
-use Watson\Autologin\Interfaces\AuthenticationInterface;
+use Veneridze\Autologin\Interfaces\AuthenticationInterface;
 
 class AuthAuthenticationProvider implements AuthenticationInterface
 {
