@@ -16,13 +16,12 @@ class CreateAutologinTokensTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
 
-            $table->string('token');
+            $table->string('token')->unique();
             $table->string('path')->nullable();
 
-            $table->timestamps();
+            $table->integer('count')->default(0)->nullable()->after('path');
 
-            $table->engine = 'InnoDB';
-            $table->index('token');
+            $table->timestamps();
         });
     }
 

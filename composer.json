@@ -1,5 +1,5 @@
 {
-    "name": "veneridze/autologin",
+    "name": "veneridze/laravel-autologin",
     "description": "Autologin package for Laravel 11",
     "keywords": [
         "laravel",

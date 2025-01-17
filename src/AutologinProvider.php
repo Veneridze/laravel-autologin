@@ -21,6 +21,9 @@ class AutologinProvider extends PackageServiceProvider
         $package
             ->name('laravel-autologin')
             ->hasConfigFile('autologin')
+            ->hasMigrations([
+                'create_autologin_tokens_table'
+            ])
             ->hasRoute('autologin')
             ->publishesServiceProvider('AutologinProvider')
             ->hasInstallCommand(function (InstallCommand $command) {
