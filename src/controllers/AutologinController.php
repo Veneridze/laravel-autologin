@@ -3,7 +3,6 @@
 namespace Veneridze\Autologin\Controllers;
 
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\App;
 use Veneridze\Autologin\Autologin;
 use Veneridze\Autologin\Interfaces\AuthenticationInterface;
 use Veneridze\Autologin\Interfaces\AutologinInterface;
@@ -31,11 +30,10 @@ class AutologinController extends Controller
      * @param  \Veneridze\Autologin\Autologin                           $autologin
      * @return void
      */
-    //AuthenticationInterface $authProvider, Autologin $autologin
-    public function __construct()
+    public function __construct(AuthenticationInterface $authProvider, Autologin $autologin)
     {
-        $this->provider = App::make(AuthenticationInterface::class); //$authProvider
-        $this->autologin = App::make(Autologin::class);//$autologin;
+        $this->provider = $authProvider;
+        $this->autologin = $autologin;
     }
 
     /**
