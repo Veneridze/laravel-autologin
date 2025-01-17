@@ -32,7 +32,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Veneridze\\Autologin\\AutologinServiceProvider"
+                "Veneridze\\Autologin\\AutologinProvider"
             ],
             "aliases": {
                 "Autologin": "Veneridze\\Autologin\\Facades\\Autologin"
