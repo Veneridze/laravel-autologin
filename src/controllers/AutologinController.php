@@ -3,6 +3,7 @@
 namespace Veneridze\Autologin\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\App;
 use Veneridze\Autologin\Autologin;
 use Veneridze\Autologin\Interfaces\AuthenticationInterface;
 use Veneridze\Autologin\Interfaces\AutologinInterface;
@@ -30,10 +31,11 @@ class AutologinController extends Controller
      * @param  \Veneridze\Autologin\Autologin                           $autologin
      * @return void
      */
-    public function __construct(AuthenticationInterface $authProvider, Autologin $autologin)
+    //AuthenticationInterface $authProvider, Autologin $autologin
+    public function __construct()
     {
-        $this->authProvider = $authProvider;
-        $this->autologin = $autologin;
+        $this->provider = App::make(AuthenticationInterface::class); //$authProvider
+        $this->autologin = App::make(Autologin::class);//$autologin;
     }
 
     /**
@@ -47,7 +49,7 @@ class AutologinController extends Controller
         if ($autologin = $this->autologin->validate($token)) {
             // Active token found, login the user and redirect to the
             // intended path.
-            if ($user = $this->authProvider->loginUsingId($autologin->getUserId())) {
+            if ($user = $this->provider->loginUsingId($autologin->getUserId())) {
                 return redirect($autologin->getPath());
             }
         }
